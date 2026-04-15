@@ -1,6 +1,8 @@
 from sqlalchemy.orm import Session
+
 from app.models.item import Item
 from app.schemas.item import ItemCreate, ItemUpdate
+
 
 class ItemRepository:
     def get_all(
@@ -12,7 +14,7 @@ class ItemRepository:
     ) -> list[Item]:
         query = db.query(Item)
 
-        if search: 
+        if search:
             query = query.filter(Item.name.ilike(f"%{search}%"))
 
         return query.offset(skip).limit(limit).all()
