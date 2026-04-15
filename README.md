@@ -14,6 +14,9 @@ This project is designed as a reusable backend foundation for building Python AP
 * Layered architecture (endpoints, services, repositories)
 * CRUD example with pagination and filtering
 * Swagger/OpenAPI docs
+* Pytest-based API tests
+* Ruff and Black for linting and formatting
+* GitHub Actions CI
 
 ## Project Structure
 
@@ -68,6 +71,38 @@ docker compose up --build
 * Swagger docs: `http://localhost:8000/docs`
 * Health check: `http://localhost:8000/api/v1/health/`
 
+## Development Commands
+
+Start the application:
+
+```bash
+docker compose up --build
+```
+
+Run linting:
+
+```bash
+docker compose exec api ruff check .
+```
+
+Format code:
+
+```bash
+docker compose exec api black .
+```
+
+Apply database migrations:
+
+```bash
+docker compose exec api alembic upgrade head
+```
+
+Run tests:
+
+```bash
+docker compose exec api pytest
+```
+
 ## Database Migrations
 
 Create a new migration:
@@ -119,8 +154,8 @@ This repository was built as a reusable FastAPI backend foundation for productio
 
 ## Roadmap
 
-* Add test suite with pytest
-* Add linting and formatting with Ruff and Black
-* Add GitHub Actions CI
-* Add authentication and authorization example
 * Add standardized error handling
+* Add authentication and authorization example
+* Add test fixtures and database isolation
+* Add a reusable base test setup
+* Add example deployment workflow
